@@ -78,12 +78,23 @@ public:
         // get number of students and see if they fit in room
         int studentNumber = this->Students.size()-1;
         // count number of X and 0 to see how many are allowed
-        int allowed = (this->rows*(this->columns/2));
+        int allowed{};
+
+        for(auto & i : this->layout)
+        {
+            for(auto & j : i)
+            {
+                if(j == "X"){
+                    allowed++;
+                }
+            }
+        }
 
         if(studentNumber > allowed || studentNumber == 0){
             cout << "Students do not fit in Class" << endl;
             return false;
         }
+        cout << "Max number of students fitting: " << allowed << endl;
         return true;
     }
 
